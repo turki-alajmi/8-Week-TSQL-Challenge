@@ -10,7 +10,7 @@ Solutions to Danny Ma's [8-Week SQL Challenge](https://8weeksqlchallenge.com/), 
 | 🏆 Case Study              | 🏢 Business Domain | 🛠️ Key Technical Focus | 📊 Status |
 |:---------------------------| :--- | :--- | :--- |
 | **[#1: Danny's Diner](Case_Study_1_Dannys_Diner/)** | Restaurant & Loyalty | Window Functions, CTE Chaining, Inequality Joins | ✅ Completed |
-| **#2: Pizza Runner**       | Logistics & Delivery | Data Cleaning, String Manipulation (`CROSS APPLY`), Temp Tables | 🚧 In Progress |
+| **#2: Pizza Runner**       | Logistics & Delivery | Data Cleaning, String Manipulation (`CROSS APPLY`), Staging Tables (`SELECT INTO`)  | 🚧 In Progress |
 | **#3: Foodie-Fi**          | SaaS Subscriptions | *(Coming Soon)* | ❌ Pending |
 | **#5: Data Mart**          | E-Commerce Retail | *(Coming Soon)* | ❌ Pending |
 | **#6: Clique Bait**        | Digital Marketing | *(Coming Soon)* | ❌ Pending |
