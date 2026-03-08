@@ -4,11 +4,11 @@
 
 ## 📋 Table of Contents
 - [The Business Problem](#-the-business-problem)
-- [Tech Stack & Skills Applied](#-tech-stack--skills-applied)
-- [Entity Relationship Diagram](#-entity-relationship-diagram)
+- [Tech Stack & Skills Applied](#%EF%B8%8F-tech-stack--skills-applied)
+- [Entity Relationship Diagram](#%EF%B8%8F-entity-relationship-diagram)
 - [Data Cleaning & Issues Found](#-data-cleaning--issues-found)
 - [Highlight Queries & Engineering Logic](#-highlight-queries--engineering-logic)
-- [What I Would Do Differently in Production](#-what-i-would-do-differently-in-production)
+- [What I Would Do Differently in Production](#%EF%B8%8F-what-i-would-do-differently-in-production)
 
 ---
 
