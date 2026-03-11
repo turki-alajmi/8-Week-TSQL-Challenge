@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
 -- Case Study #1: Danny's Diner
 -- Author: Turki Alajmi
--- Date: March 2026
+-- Date: February 2026
 -- Tool used: Microsoft SQL Server (T-SQL)
 --------------------------------------------------------------------------- */
 

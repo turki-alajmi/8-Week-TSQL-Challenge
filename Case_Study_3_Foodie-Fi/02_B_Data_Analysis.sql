@@ -241,7 +241,8 @@ SELECT
     COUNT(customer_id) AS annual_gain
 FROM histogram
 GROUP BY
-    histo;
+    histo
+ORDER BY histo
 
 ------------------------------------------------------------------------
 -- Q11: How many customers downgraded from a pro monthly to a basic
