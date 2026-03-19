@@ -14,7 +14,7 @@
 
 ## 🏢 The Business Problem
 
-Danny runs **Data Mart** — an international online supermarket that specialises in fresh produce. In June 2020, the business introduced sustainable packaging across all products. The question Danny needed answered: **did the change hurt sales, and if so, where?**
+Danny runs **Data Mart** — an international online supermarket that specialises in fresh produce. In June 2020, the business introduced sustainable packaging across all products. The business needed to know: **did the change hurt sales, and if so, where?**
 
 **The Goal:**
 The source data arrived as a single pre-aggregated table with dates stored as `VARCHAR` in a non-standard format and no analytical dimensions derived. Before any analysis could run, the raw table required a full cleansing pipeline to parse dates, derive week numbers, map segment codes to readable labels, and materialize a clean table. From there, the objective was to quantify the before/after sales impact of the packaging change across time periods, regions, platforms, demographics, and customer types.
@@ -61,7 +61,7 @@ All cleansing and dimension derivation was performed in a single query using a C
 **Question:** *Section B, Q2 — What range of week numbers are missing from the dataset?*
 *Full script: [02_B_Data_Exploration.sql](02_B_Data_Exploration.sql)*
 
-**The Problem:** The dataset only covers a trading window within each year — not the full 52 weeks. To find the missing week numbers, you need a complete reference set of all possible weeks to compare against. That reference doesn't exist in the data — it has to be generated.
+**The Problem:** The dataset only covers a trading window within each year — not the full 52 weeks. To find the missing week numbers, a complete reference set of all possible weeks is needed to compare against. That reference doesn't exist in the data — it has to be generated.
 
 **The Solution:** A recursive CTE generates integers 1 through 52 as the complete reference set. `EXCEPT` subtracts the week numbers that exist in the dataset, leaving only the gaps. This is the standard T-SQL approach for generating a number sequence when a tally table isn't available — `GENERATE_SERIES(1, 52)` achieves the same result on SQL Server 2022+.
 ```sql
@@ -182,10 +182,10 @@ CROSS JOIN after_4_weeks;
 
 WITH before_after_sales AS (
     SELECT
-        CASE WHEN GROUPING(region)        = 1 THEN '-' ELSE region        END AS region,
-        CASE WHEN GROUPING(platform)      = 1 THEN '-' ELSE platform      END AS platform,
-        CASE WHEN GROUPING(age_band)      = 1 THEN '-' ELSE age_band      END AS age_band,
-        CASE WHEN GROUPING(demographic)   = 1 THEN '-' ELSE demographic   END AS demographic,
+        CASE WHEN GROUPING(region) = 1 THEN '-' ELSE region END AS region,
+        CASE WHEN GROUPING(platform) = 1 THEN '-' ELSE platform END AS platform,
+        CASE WHEN GROUPING(age_band) = 1 THEN '-' ELSE age_band END AS age_band,
+        CASE WHEN GROUPING(demographic) = 1 THEN '-' ELSE demographic END AS demographic,
         CASE WHEN GROUPING(customer_type) = 1 THEN '-' ELSE customer_type END AS customer_type,
         SUM(CASE
                 WHEN week_number BETWEEN 12 AND 23 THEN
@@ -224,7 +224,6 @@ FROM before_after_sales;
 | - | - | - | - | New | 862720419 | 871470664 | 8750245 | 1.01 |
 | - | - | - | Couples | - | 2033589643 | 2015977285 | -17612358 | -0.87 |
 | - | - | - | Families | - | 2328329040 | 2286009025 | -42320015 | -1.82 |
-| - | - | - | unknown | - | 2764354464 | 2671961443 | -92393021 | -3.34 |
 | - | - | Middle Aged | - | - | 1164847640 | 1141853348 | -22994292 | -1.97 |
 | - | - | Retirees | - | - | 2395264515 | 2365714994 | -29549521 | -1.23 |
 | - | - | unknown | - | - | 2764354464 | 2671961443 | -92393021 | -3.34 |
@@ -239,9 +238,9 @@ FROM before_after_sales;
 | SOUTH AMERICA | - | - | - | - | 213036207 | 208452033 | -4584174 | -2.15 |
 | USA | - | - | - | - | 677013558 | 666198715 | -10814843 | -1.60 |
 
-> **Key Finding:** The `unknown` demographic and age_band segments recorded the highest negative impact at -3.34%, followed by ASIA (-3.26%) and OCEANIA (-3.03%). Unidentified customers and customers in distant regions were disproportionately affected by the packaging change.
-
 </details>
+
+> **Key Finding:** The `unknown` demographic and age_band segments recorded the highest negative impact at -3.34%, followed by ASIA (-3.26%) and OCEANIA (-3.03%). Unidentified customers and customers in distant regions were disproportionately affected by the packaging change.
 
 ---
 
